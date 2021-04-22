@@ -5,7 +5,8 @@ class ImageTile extends StatelessWidget {
   final String imageUrl;
   final String imageTitle;
 
-  const ImageTile({Key key, this.imageUrl, this.imageTitle}) : super(key: key);
+  const ImageTile({Key key, @required this.imageUrl, @required this.imageTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

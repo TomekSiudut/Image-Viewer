@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:images/bloc/newest_images_bloc.dart';
+import 'package:images/bloc/search_images_bloc.dart';
 import 'package:images/theme/colors.dart';
 import 'package:images/widgets/image_tile.dart';
 import 'package:images/widgets/loading_indicator.dart';
@@ -13,6 +14,7 @@ class SearchImagesScreen extends StatefulWidget {
 }
 
 class _SearchImagesScreenState extends State<SearchImagesScreen> {
+  final _searchInputController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -29,6 +31,12 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
               SizedBox(height: 20.0),
               TextInputContainer(
                   child: TextField(
+                      controller: _searchInputController,
+                      onChanged: (changed) {
+                        searchImageBloc
+                            .search(_searchInputController.text.toLowerCase());
+                        setState(() {});
+                      },
                       decoration: InputDecoration(
                           icon: Icon(Icons.search,
                               color: Colors.grey, size: 20.0),
@@ -40,7 +48,9 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
               SizedBox(height: 30.0),
               Expanded(
                 child: StreamBuilder(
-                    stream: newestImagesBloc.subject.stream,
+                    stream: _searchInputController.value.text.isEmpty
+                        ? newestImagesBloc.subject.stream
+                        : searchImageBloc.subject.stream,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.data == null) {
                         print("error");
@@ -58,8 +68,10 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                               mainAxisSpacing: 16,
                             ),
                             itemBuilder: (context, index) => ImageTile(
-                                  imageTitle: snapshot.data[index].title,
-                                  imageUrl: snapshot.data[index].imageUrl,
+                                  imageTitle:
+                                      snapshot.data[index].title.toString(),
+                                  imageUrl:
+                                      snapshot.data[index].imageUrl.toString(),
                                 ));
                       }
                       return LoadingIndicator();
