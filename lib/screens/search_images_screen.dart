@@ -60,7 +60,6 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                         if (snapshot.data == []) {
                           return EmptyList();
                         }
-
                         return GridView.builder(
                             padding: const EdgeInsets.only(
                                 right: 12, left: 12, bottom: 32, top: 8),
@@ -79,7 +78,7 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                                       snapshot.data[index].imageUrl.toString(),
                                 ));
                       }
-                      return EmptyList();
+                      return LoadingIndicator();
                     }),
               )
             ],

@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:images/repository/image_repository.dart';
 
 class FavImagesScreen extends StatelessWidget {
   const FavImagesScreen({Key key}) : super(key: key);
