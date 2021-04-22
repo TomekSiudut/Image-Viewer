@@ -12,11 +12,13 @@ class ImageTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                "https://ireland.apollo.olxcdn.com/v1/files/goxzdbthwbkt-PL/image;s=644x461",
-                height: 250.0,
-                width: 200.0,
-                fit: BoxFit.fitWidth,
+              Expanded(
+                child: Image.network(
+                  "https://ireland.apollo.olxcdn.com/v1/files/goxzdbthwbkt-PL/image;s=644x461",
+                  height: 250.0,
+                  width: 200.0,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
