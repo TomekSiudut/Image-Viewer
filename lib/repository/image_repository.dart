@@ -6,10 +6,10 @@ class ImageRepository {
   static Uri url = Uri.parse(
       "https://api.unsplash.com/photos/?client_id=CWE41DrXlU8y_ydYjcFH6z4_SUwCU5NGFKjF2w87x4s");
 
-  Future getNewImages() async {
+  Future<List<ImageModel>> getNewImages() async {
     final response = await http.get(url);
     List imgData = json.decode(response.body);
     List images = imgData.map((image) => ImageModel.fromJson(image)).toList();
-    print(images.map((e) => e.title));
+    return images;
   }
 }

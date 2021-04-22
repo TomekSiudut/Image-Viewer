@@ -1,7 +1,10 @@
 import "package:flutter/material.dart";
 
 class ImageTile extends StatelessWidget {
-  const ImageTile({Key key}) : super(key: key);
+  final String imageUrl;
+  final String imageTitle;
+
+  const ImageTile({Key key, this.imageUrl, this.imageTitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +17,10 @@ class ImageTile extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.network(
-                  "https://ireland.apollo.olxcdn.com/v1/files/goxzdbthwbkt-PL/image;s=644x461",
+                  imageUrl,
                   height: 250.0,
                   width: 200.0,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                 ),
               ),
               Padding(
@@ -29,7 +32,7 @@ class ImageTile extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Image Title",
+                            imageTitle,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:images/widgets/image_tile.dart';
 
 class FavImagesScreen extends StatelessWidget {
   const FavImagesScreen({Key key}) : super(key: key);
@@ -22,7 +21,8 @@ class FavImagesScreen extends StatelessWidget {
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
-              itemBuilder: (context, index) => ImageTile()),
+              itemBuilder: (context, index) => Text("Favorite Image",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
         )
       ],
     )));

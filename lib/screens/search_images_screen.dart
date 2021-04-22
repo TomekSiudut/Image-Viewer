@@ -1,10 +1,23 @@
 import "package:flutter/material.dart";
+import 'package:images/bloc/newest_images_bloc.dart';
 import 'package:images/theme/colors.dart';
 import 'package:images/widgets/image_tile.dart';
+import 'package:images/widgets/loading_indicator.dart';
 import 'package:images/widgets/text_input_container.dart';
 
-class SearchImagesScreen extends StatelessWidget {
+class SearchImagesScreen extends StatefulWidget {
   const SearchImagesScreen({Key key}) : super(key: key);
+
+  @override
+  _SearchImagesScreenState createState() => _SearchImagesScreenState();
+}
+
+class _SearchImagesScreenState extends State<SearchImagesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    newestImagesBloc.getNewestImages();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +39,31 @@ class SearchImagesScreen extends StatelessWidget {
                           border: InputBorder.none))),
               SizedBox(height: 30.0),
               Expanded(
-                child: GridView.builder(
-                    padding: const EdgeInsets.only(
-                        right: 12, left: 12, bottom: 32, top: 8),
-                    itemCount: 10,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.7,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                    ),
-                    itemBuilder: (context, index) => ImageTile()),
+                child: StreamBuilder(
+                    stream: newestImagesBloc.subject.stream,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == null) {
+                        print("error");
+                      }
+                      if (snapshot.hasData) {
+                        return GridView.builder(
+                            padding: const EdgeInsets.only(
+                                right: 12, left: 12, bottom: 32, top: 8),
+                            itemCount: snapshot.data.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.7,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                            ),
+                            itemBuilder: (context, index) => ImageTile(
+                                  imageTitle: snapshot.data[index].title,
+                                  imageUrl: snapshot.data[index].imageUrl,
+                                ));
+                      }
+                      return LoadingIndicator();
+                    }),
               )
             ],
           ),
