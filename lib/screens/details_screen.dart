@@ -12,12 +12,15 @@ class DetailsScreen extends StatelessWidget {
         backgroundColor: AppColors.mainColor,
       ),
       body: Stack(children: <Widget>[
-        Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
-          height: double.infinity,
-          width: double.infinity,
-          alignment: Alignment.center,
+        Hero(
+          tag: imageUrl,
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(35.0),

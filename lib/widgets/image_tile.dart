@@ -25,11 +25,14 @@ class ImageTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Image.network(
-                    imageUrl,
-                    height: 250.0,
-                    width: 200.0,
-                    fit: BoxFit.fill,
+                  child: Hero(
+                    tag: imageUrl,
+                    child: Image.network(
+                      imageUrl,
+                      height: 250.0,
+                      width: 200.0,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 Padding(
