@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:images/bloc/bottom_nav_bloc.dart';
+import 'package:images/repository/image_repository.dart';
 import 'package:images/screens/fav_images_screen.dart';
 import 'package:images/screens/search_images_screen.dart';
 import 'package:images/theme/colors.dart';
@@ -22,6 +23,8 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ImageRepository().getNewImages();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
