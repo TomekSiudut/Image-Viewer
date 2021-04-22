@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:images/bloc/newest_images_bloc.dart';
 import 'package:images/bloc/search_images_bloc.dart';
 import 'package:images/theme/colors.dart';
+import 'package:images/widgets/empty_list.dart';
 import 'package:images/widgets/image_tile.dart';
 import 'package:images/widgets/loading_indicator.dart';
 import 'package:images/widgets/text_input_container.dart';
@@ -53,9 +54,13 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                         : searchImageBloc.subject.stream,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.data == null) {
-                        print("error");
+                        return EmptyList();
                       }
                       if (snapshot.hasData) {
+                        if (snapshot.data == []) {
+                          return EmptyList();
+                        }
+
                         return GridView.builder(
                             padding: const EdgeInsets.only(
                                 right: 12, left: 12, bottom: 32, top: 8),
@@ -74,7 +79,7 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                                       snapshot.data[index].imageUrl.toString(),
                                 ));
                       }
-                      return LoadingIndicator();
+                      return EmptyList();
                     }),
               )
             ],
