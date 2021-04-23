@@ -8,7 +8,7 @@ class ImageModel {
   ImageModel(
       {@required this.imageUrl, @required this.title, @required this.id});
 
-  ImageModel.fromJson(json)
+  ImageModel.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         title = json['alt_description'],
         imageUrl = json['urls']["regular"];

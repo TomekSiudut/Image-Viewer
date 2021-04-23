@@ -38,26 +38,29 @@ class LocalRepository {
   Future<ImageModel> addNewImage(ImageModel image) async {
     var dbClient = await db;
     dbClient.insert(TABLE, image.toMap()).toString();
+    print(image.id);
     return image;
   }
 
   Future<List<ImageModel>> getFavImages() async {
     var dbClient = await db;
-    List<Map> maps = await dbClient.query(TABLE, columns: [ID, URL, TITLE]);
+    List<Map> maps =
+        await dbClient.query(TABLE, columns: [IMAGE_ID, URL, TITLE]);
 
-    List<ImageModel> employees = [];
+    List<ImageModel> images = [];
     if (maps.length > 0) {
       for (int i = 0; i < maps.length; i++) {
-        employees.add(ImageModel.fromMap(maps[i]));
+        images.add(ImageModel.fromMap(maps[i]));
       }
     }
-    return employees;
+    print(images.map((e) => e.id));
+    return images;
   }
 
-  Future<int> deleteImage(String title) async {
+  Future<int> deleteImage(String id) async {
     var dbClient = await db;
     return await dbClient
-        .delete(TABLE, where: '$TITLE = ?', whereArgs: [title]);
+        .delete(TABLE, where: '$IMAGE_ID = ?', whereArgs: [id]);
   }
 
   Future close() async {

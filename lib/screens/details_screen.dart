@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
       ),
       body: Stack(children: <Widget>[
         Hero(
-          tag: image.imageUrl,
+          tag: image.id,
           child: Image.network(
             image.imageUrl,
             fit: BoxFit.cover,
@@ -32,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FavoriteButton(
-                valueChanged: (_) {
+                valueChanged: (_isFavorite) {
                   favImagesBloc.addNewImage(image);
                 },
               ),

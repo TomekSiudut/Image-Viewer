@@ -32,7 +32,7 @@ class _FavImageTileState extends State<FavImageTile> {
               children: [
                 Expanded(
                   child: Hero(
-                    tag: widget.image.imageUrl,
+                    tag: widget.image.id,
                     child: Image.network(
                       widget.image.imageUrl ?? "",
                       height: 250.0,
@@ -62,12 +62,10 @@ class _FavImageTileState extends State<FavImageTile> {
                       Center(
                         child: TextButton(
                           onPressed: () =>
-                              favImagesBloc.deleteImage(widget.image.title),
-                          child: Text("DELETE",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15.0)),
+                              favImagesBloc.deleteImage(widget.image.id),
+                          child: Text("REMOVE",
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 15.0)),
                         ),
                       )
                     ],
