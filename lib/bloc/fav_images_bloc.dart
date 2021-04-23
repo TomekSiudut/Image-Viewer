@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:images/models/image_model.dart';
 import 'package:images/repository/local_repository.dart';
 import 'package:rxdart/subjects.dart';
@@ -17,8 +16,9 @@ class FavImagesBloc {
     _repository.addNewImage(image);
   }
 
-  void deleteImage(int index) {
-    _repository.deleteImage(index);
+  void deleteImage(String id) {
+    _repository.deleteImage(id);
+    getUserFavImages();
   }
 
   dispose() {

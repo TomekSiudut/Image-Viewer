@@ -3,11 +3,16 @@ import 'package:images/bloc/fav_images_bloc.dart';
 import 'package:images/models/image_model.dart';
 import 'package:images/screens/details_screen.dart';
 
-class FavImageTile extends StatelessWidget {
+class FavImageTile extends StatefulWidget {
   final ImageModel image;
 
-  const FavImageTile({Key key, @required this.image}) : super(key: key);
+  const FavImageTile({Key key, this.image}) : super(key: key);
 
+  @override
+  _FavImageTileState createState() => _FavImageTileState();
+}
+
+class _FavImageTileState extends State<FavImageTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -15,7 +20,7 @@ class FavImageTile extends StatelessWidget {
         context,
         MaterialPageRoute(
             builder: (context) => DetailsScreen(
-                  image: image,
+                  image: widget.image,
                 )),
       ),
       child: ClipRRect(
@@ -27,9 +32,9 @@ class FavImageTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Hero(
-                    tag: image.imageUrl,
+                    tag: widget.image.imageUrl,
                     child: Image.network(
-                      image.imageUrl,
+                      widget.image.imageUrl,
                       height: 250.0,
                       width: 200.0,
                       fit: BoxFit.fill,
@@ -45,7 +50,7 @@ class FavImageTile extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              image.title,
+                              widget.image.title,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -55,7 +60,9 @@ class FavImageTile extends StatelessWidget {
                       SizedBox(height: 2),
                       SizedBox(height: 5),
                       GestureDetector(
-                        onTap: () => favImagesBloc.deleteImage(1),
+                        onTap: () {
+                          favImagesBloc.deleteImage(widget.image.title);
+                        },
                         child: Text("DELETE",
                             style: TextStyle(
                                 color: Colors.red,

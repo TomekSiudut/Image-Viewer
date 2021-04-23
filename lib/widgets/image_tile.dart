@@ -5,7 +5,7 @@ import 'package:images/screens/details_screen.dart';
 class ImageTile extends StatelessWidget {
   final ImageModel image;
 
-  const ImageTile({Key key, @required this.image}) : super(key: key);
+  const ImageTile({Key key, this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class ImageTile extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              image.title,
+                              image.title ?? "Image from Unsplash",
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),

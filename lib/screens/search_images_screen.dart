@@ -58,7 +58,7 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                         return LoadingIndicator();
                       }
                       if (snapshot.hasData) {
-                        if (snapshot.data == []) {
+                        if (snapshot.data == null) {
                           return EmptyList();
                         }
                         return GridView.builder(

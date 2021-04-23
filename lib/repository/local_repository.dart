@@ -54,9 +54,10 @@ class LocalRepository {
     return employees;
   }
 
-  Future<int> deleteImage(int id) async {
+  Future<int> deleteImage(String title) async {
     var dbClient = await db;
-    return await dbClient.delete(TABLE, where: '$ID = ?', whereArgs: [id]);
+    return await dbClient
+        .delete(TABLE, where: '$TITLE = ?', whereArgs: [title]);
   }
 
   Future close() async {

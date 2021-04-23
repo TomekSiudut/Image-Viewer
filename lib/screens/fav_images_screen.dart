@@ -34,9 +34,6 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
                   return EmptyList();
                 }
                 if (snapshot.hasData) {
-                  if (snapshot.data == []) {
-                    return EmptyList();
-                  }
                   return GridView.builder(
                       padding: const EdgeInsets.only(
                           right: 12, left: 12, bottom: 32, top: 8),
