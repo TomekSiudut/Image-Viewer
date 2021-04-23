@@ -27,6 +27,7 @@ class _NavScreenState extends State<NavScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.dark,
         backgroundColor: AppColors.mainColor,
         title:
             Text("Image Viewer", style: TextStyle(fontWeight: FontWeight.bold)),

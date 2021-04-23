@@ -31,7 +31,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
               stream: favImagesBloc.subject.stream,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
-                  return EmptyList();
+                  return LoadingIndicator();
                 }
                 if (snapshot.hasData) {
                   return GridView.builder(

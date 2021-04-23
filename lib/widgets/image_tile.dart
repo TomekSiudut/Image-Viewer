@@ -4,7 +4,6 @@ import 'package:images/screens/details_screen.dart';
 
 class ImageTile extends StatelessWidget {
   final ImageModel image;
-
   const ImageTile({Key key, this.image}) : super(key: key);
 
   @override
