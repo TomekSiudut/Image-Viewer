@@ -31,7 +31,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
               stream: favImagesBloc.subject.stream,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
-                  return LoadingIndicator();
+                  return EmptyList();
                 }
                 if (snapshot.hasData) {
                   if (snapshot.data == []) {
@@ -48,9 +48,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
                         mainAxisSpacing: 16,
                       ),
                       itemBuilder: (context, index) => FavImageTile(
-                            index: index,
-                            imageTitle: snapshot.data[index].title.toString(),
-                            imageUrl: snapshot.data[index].imageUrl.toString(),
+                            image: snapshot.data[index],
                           ));
                 }
                 return LoadingIndicator();

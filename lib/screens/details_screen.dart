@@ -1,10 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:images/bloc/fav_images_bloc.dart';
+import 'package:images/models/image_model.dart';
 import 'package:images/theme/colors.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final String imageUrl;
-  const DetailsScreen({Key key, this.imageUrl}) : super(key: key);
+  final ImageModel image;
+  const DetailsScreen({Key key, this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class DetailsScreen extends StatelessWidget {
       ),
       body: Stack(children: <Widget>[
         Hero(
-          tag: imageUrl,
+          tag: image.imageUrl,
           child: Image.network(
-            imageUrl,
+            image.imageUrl,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
@@ -29,7 +30,7 @@ class DetailsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               GestureDetector(
-                onTap: () => favImagesBloc.addNewImage(),
+                onTap: () => favImagesBloc.addNewImage(image),
                 child: Icon(
                   Icons.favorite_border_outlined,
                   color: Colors.white,

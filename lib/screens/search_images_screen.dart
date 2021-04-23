@@ -73,10 +73,7 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                               mainAxisSpacing: 16,
                             ),
                             itemBuilder: (context, index) => ImageTile(
-                                  imageTitle:
-                                      snapshot.data[index].title.toString(),
-                                  imageUrl:
-                                      snapshot.data[index].imageUrl.toString(),
+                                  image: snapshot.data[index],
                                 ));
                       }
                       return LoadingIndicator();

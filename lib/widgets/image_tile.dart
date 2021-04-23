@@ -1,12 +1,11 @@
 import "package:flutter/material.dart";
+import 'package:images/models/image_model.dart';
 import 'package:images/screens/details_screen.dart';
 
 class ImageTile extends StatelessWidget {
-  final String imageUrl;
-  final String imageTitle;
+  final ImageModel image;
 
-  const ImageTile({Key key, @required this.imageUrl, @required this.imageTitle})
-      : super(key: key);
+  const ImageTile({Key key, @required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class ImageTile extends StatelessWidget {
         context,
         MaterialPageRoute(
             builder: (context) => DetailsScreen(
-                  imageUrl: imageUrl,
+                  image: image,
                 )),
       ),
       child: ClipRRect(
@@ -27,9 +26,9 @@ class ImageTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Hero(
-                    tag: imageUrl,
+                    tag: image.id,
                     child: Image.network(
-                      imageUrl,
+                      image.imageUrl,
                       height: 250.0,
                       width: 200.0,
                       fit: BoxFit.fill,
@@ -45,7 +44,7 @@ class ImageTile extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              imageTitle,
+                              image.title,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -53,11 +52,6 @@ class ImageTile extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 2),
-                      Text(
-                        "image description",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                      ),
                     ],
                   ),
                 ),

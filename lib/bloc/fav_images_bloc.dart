@@ -13,8 +13,8 @@ class FavImagesBloc {
     _subject.sink.add(response);
   }
 
-  void addNewImage() {
-    _repository.addNewImage();
+  void addNewImage(ImageModel image) {
+    _repository.addNewImage(image);
   }
 
   void deleteImage(int index) {
