@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:images/bloc/fav_images_bloc.dart';
 import 'package:images/theme/colors.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -27,10 +28,13 @@ class DetailsScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.white,
-                size: 35.0,
+              GestureDetector(
+                onTap: () => favImagesBloc.addNewImage(),
+                child: Icon(
+                  Icons.favorite_border_outlined,
+                  color: Colors.white,
+                  size: 35.0,
+                ),
               )
             ],
           ),

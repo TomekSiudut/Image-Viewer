@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:images/bloc/newest_images_bloc.dart';
 import 'package:images/bloc/search_images_bloc.dart';
+import 'package:images/models/image_model.dart';
 import 'package:images/theme/colors.dart';
 import 'package:images/widgets/empty_list.dart';
 import 'package:images/widgets/image_tile.dart';
@@ -48,13 +49,13 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                           border: InputBorder.none))),
               SizedBox(height: 30.0),
               Expanded(
-                child: StreamBuilder(
+                child: StreamBuilder<List<ImageModel>>(
                     stream: _searchInputController.value.text.isEmpty
                         ? newestImagesBloc.subject.stream
                         : searchImageBloc.subject.stream,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.data == null) {
-                        return EmptyList();
+                        return LoadingIndicator();
                       }
                       if (snapshot.hasData) {
                         if (snapshot.data == []) {
