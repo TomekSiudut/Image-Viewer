@@ -2,7 +2,10 @@ import "package:flutter/material.dart";
 
 class EmptyList extends StatelessWidget {
   final Widget child;
-  const EmptyList({Key key, this.child}) : super(key: key);
+  final String title;
+  final IconData icon;
+  const EmptyList({Key key, this.child, this.title, this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +13,9 @@ class EmptyList extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Icon(Icons.image, color: Colors.grey, size: 50.0),
+        Icon(icon, color: Colors.grey, size: 50.0),
         SizedBox(height: 10.0),
-        Text("No images found :(",
+        Text(title,
             style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold))
       ],
     ));

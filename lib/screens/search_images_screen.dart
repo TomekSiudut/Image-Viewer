@@ -58,8 +58,11 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                         return LoadingIndicator();
                       }
                       if (snapshot.hasData) {
-                        if (snapshot.data == null) {
-                          return EmptyList();
+                        if (snapshot.data.isEmpty) {
+                          return EmptyList(
+                            icon: Icons.image,
+                            title: "No images found",
+                          );
                         }
                         return GridView.builder(
                             padding: const EdgeInsets.only(

@@ -12,6 +12,7 @@ class ImageRepository {
     List imgData = json.decode(response.body);
     List<ImageModel> images =
         imgData.map((image) => ImageModel.fromJson(image)).toList();
+    print(images.map((e) => e.id));
     return images;
   }
 

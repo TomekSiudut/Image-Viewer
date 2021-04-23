@@ -34,10 +34,10 @@ class _FavImageTileState extends State<FavImageTile> {
                   child: Hero(
                     tag: widget.image.imageUrl,
                     child: Image.network(
-                      widget.image.imageUrl,
+                      widget.image.imageUrl ?? "",
                       height: 250.0,
                       width: 200.0,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -59,15 +59,16 @@ class _FavImageTileState extends State<FavImageTile> {
                       ),
                       SizedBox(height: 2),
                       SizedBox(height: 5),
-                      GestureDetector(
-                        onTap: () {
-                          favImagesBloc.deleteImage(widget.image.title);
-                        },
-                        child: Text("DELETE",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15.0)),
+                      Center(
+                        child: TextButton(
+                          onPressed: () =>
+                              favImagesBloc.deleteImage(widget.image.title),
+                          child: Text("DELETE",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.0)),
+                        ),
                       )
                     ],
                   ),

@@ -13,10 +13,6 @@ class ImageModel {
         title = json['alt_description'],
         imageUrl = json['urls']["regular"];
 
-  ImageModel.fromSearchJson(json)
-      : title = json["results"]['alt_description'],
-        imageUrl = json["results"]['alt_description'];
-
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       'image_id': id,

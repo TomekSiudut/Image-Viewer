@@ -34,6 +34,12 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
                   return LoadingIndicator();
                 }
                 if (snapshot.hasData) {
+                  if (snapshot.data.isEmpty) {
+                    return EmptyList(
+                      icon: Icons.favorite,
+                      title: "No favorite photos",
+                    );
+                  }
                   return GridView.builder(
                       padding: const EdgeInsets.only(
                           right: 12, left: 12, bottom: 32, top: 8),

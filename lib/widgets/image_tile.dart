@@ -30,7 +30,7 @@ class ImageTile extends StatelessWidget {
                       image.imageUrl,
                       height: 250.0,
                       width: 200.0,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
