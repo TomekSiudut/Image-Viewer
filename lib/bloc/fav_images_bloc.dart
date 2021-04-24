@@ -1,9 +1,9 @@
 import 'package:images/models/image_model.dart';
-import 'package:images/repository/local_repository.dart';
+import 'package:images/repository/local_images_repository.dart';
 import 'package:rxdart/subjects.dart';
 
 class FavImagesBloc {
-  final LocalRepository _repository = LocalRepository();
+  final LocalImagesRepository _repository = LocalImagesRepository();
   final BehaviorSubject<List<ImageModel>> _subject =
       BehaviorSubject<List<ImageModel>>();
 
@@ -16,8 +16,8 @@ class FavImagesBloc {
     _repository.addNewImage(image);
   }
 
-  void deleteImage(String id) {
-    _repository.deleteImage(id);
+  Future<void> deleteImage(String id) async {
+    await _repository.deleteImage(id);
     getUserFavImages();
   }
 

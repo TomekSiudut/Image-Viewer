@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:images/bloc/fav_images_bloc.dart';
 import 'package:images/models/image_model.dart';
-import 'package:images/widgets/empty_list.dart';
+import 'package:images/widgets/empty_list_message.dart';
 import 'package:images/widgets/fav_image_tile.dart';
 import 'package:images/widgets/loading_indicator.dart';
 
@@ -35,7 +35,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
                 }
                 if (snapshot.hasData) {
                   if (snapshot.data.isEmpty) {
-                    return EmptyList(
+                    return EmptyListMessage(
                       icon: Icons.favorite,
                       title: "No favorite photos",
                     );

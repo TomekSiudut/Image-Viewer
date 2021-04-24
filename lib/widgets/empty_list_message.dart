@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 
-class EmptyList extends StatelessWidget {
+class EmptyListMessage extends StatelessWidget {
   final Widget child;
   final String title;
   final IconData icon;
-  const EmptyList({Key key, this.child, this.title, this.icon})
+  const EmptyListMessage({Key key, this.child, this.title, this.icon})
       : super(key: key);
 
   @override

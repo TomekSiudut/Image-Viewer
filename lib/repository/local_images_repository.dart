@@ -6,7 +6,7 @@ import 'package:sqflite/sqlite_api.dart';
 import "package:path_provider/path_provider.dart";
 import "dart:io" as io;
 
-class LocalRepository {
+class LocalImagesRepository {
   static Database _db;
   static const String ID = 'id';
   static const String IMAGE_ID = "image_id";

@@ -9,22 +9,31 @@ class ImageRepository {
 
   Future<List<ImageModel>> getNewImages() async {
     final response = await http.get(url);
-    List imgData = json.decode(response.body);
-    List<ImageModel> images =
-        imgData.map((image) => ImageModel.fromJson(image)).toList();
-    print(images.map((e) => e.id));
-    return images;
+
+    if (response.statusCode == 200) {
+      List imgData = json.decode(response.body);
+      List<ImageModel> images =
+          imgData.map((image) => ImageModel.fromJson(image)).toList();
+      return images;
+    } else {
+      return [];
+    }
   }
 
   Future<List<ImageModel>> searchImagesByKeyword(String keyword) async {
     final Uri url = Uri.parse(
-        "https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=CWE41DrXlU8y_ydYjcFH6z4_SUwCU5NGFKjF2w87x4s");
+        "https://api.unsplash.com/search/photos?page=1&query=$keyword&client_id=CWE41DrXlU8y_ydYjcFH6z4_SUwCU5NGFKjF2w87x4s");
     final response = await http.get(url);
-    final imgData = json.decode(response.body);
-    SearchListModel imagesFromJson = SearchListModel.fromJson(imgData);
-    List<ImageModel> images = imagesFromJson.images
-        .map((image) => ImageModel.fromJson(image))
-        .toList();
-    return images;
+
+    if (response.statusCode == 200) {
+      final imgData = json.decode(response.body);
+      SearchListModel imagesFromJson = SearchListModel.fromJson(imgData);
+      List<ImageModel> images = imagesFromJson.images
+          .map((image) => ImageModel.fromJson(image))
+          .toList();
+      return images;
+    } else {
+      return [];
+    }
   }
 }

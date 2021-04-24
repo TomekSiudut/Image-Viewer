@@ -3,7 +3,7 @@ import 'package:images/bloc/newest_images_bloc.dart';
 import 'package:images/bloc/search_images_bloc.dart';
 import 'package:images/models/image_model.dart';
 import 'package:images/theme/colors.dart';
-import 'package:images/widgets/empty_list.dart';
+import 'package:images/widgets/empty_list_message.dart';
 import 'package:images/widgets/image_tile.dart';
 import 'package:images/widgets/loading_indicator.dart';
 import 'package:images/widgets/text_input_container.dart';
@@ -59,14 +59,17 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                       }
                       if (snapshot.hasData) {
                         if (snapshot.data.isEmpty) {
-                          return EmptyList(
+                          return EmptyListMessage(
                             icon: Icons.image,
                             title: "No images found",
                           );
                         }
                         return GridView.builder(
                             padding: const EdgeInsets.only(
-                                right: 12, left: 12, bottom: 32, top: 8),
+                                right: 12.0,
+                                left: 12.0,
+                                bottom: 32.0,
+                                top: 8.0),
                             itemCount: snapshot.data.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
