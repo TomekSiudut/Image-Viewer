@@ -7,7 +7,7 @@ class SearchImagesBloc {
   final BehaviorSubject<List<ImageModel>> _subject =
       BehaviorSubject<List<ImageModel>>();
 
-  search(String value) async {
+  Future<void> search(String value) async {
     final List<ImageModel> response =
         await _repository.searchImagesByKeyword(value);
     _subject.sink.add(response);

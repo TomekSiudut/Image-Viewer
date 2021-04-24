@@ -7,7 +7,7 @@ class NewestImagesBloc {
   final BehaviorSubject<List<ImageModel>> _subject =
       BehaviorSubject<List<ImageModel>>();
 
-  getNewestImages() async {
+  Future<void> getNewestImages() async {
     final List<ImageModel> response = await _repository.getNewImages();
     _subject.sink.add(response);
   }

@@ -52,8 +52,8 @@ class FavImageTile extends StatelessWidget {
                           SizedBox(width: 8),
                         ],
                       ),
-                      SizedBox(height: 2),
-                      SizedBox(height: 5),
+                      SizedBox(height: 2.0),
+                      SizedBox(height: 5.0),
                       Center(
                         child: TextButton(
                           onPressed: () => favImagesBloc.deleteImage(image.id),
