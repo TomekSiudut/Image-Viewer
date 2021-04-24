@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.images">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="images"
+        android:label="Image Viewer"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

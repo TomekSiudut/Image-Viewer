@@ -42,7 +42,7 @@ class _SearchImagesScreenState extends State<SearchImagesScreen> {
                       decoration: InputDecoration(
                           icon: Icon(Icons.search,
                               color: Colors.grey, size: 20.0),
-                          hintText: "Search Images..",
+                          hintText: "Search images..",
                           hintStyle: TextStyle(
                             color: Colors.grey,
                           ),
