@@ -38,7 +38,6 @@ class LocalImagesRepository {
   Future<ImageModel> addNewImage(ImageModel image) async {
     var dbClient = await db;
     dbClient.insert(TABLE, image.toMap()).toString();
-    print(image.id);
     return image;
   }
 
@@ -53,7 +52,6 @@ class LocalImagesRepository {
         images.add(ImageModel.fromMap(maps[i]));
       }
     }
-    print(images.map((e) => e.id));
     return images;
   }
 
